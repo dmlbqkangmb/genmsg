@@ -387,10 +387,7 @@ class MsgContext(object):
 
     def get_all_depends(self, full_msg_type):
         all_deps = []
-        depends = self.get_depends(full_msg_type)
-        if depends is None:
-            raise KeyError(full_msg_type)
-        for d in depends:
+        for d in self.get_depends(full_msg_type):
             all_deps.extend([d])
             all_deps.extend(self.get_all_depends(d))
         return all_deps
